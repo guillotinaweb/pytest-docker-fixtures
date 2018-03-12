@@ -4,6 +4,11 @@ Introduction
 Provide various service pytest fixtures.
 
 
+Install
+-------
+
+`pip install pytest-docker-fixtures`
+
 Usages
 ------
 
@@ -24,6 +29,6 @@ Available fixtures
 PRs welcome!
 
 - redis
-- pg
-- cockroach
 - etcd
+- pg(require to be installed with `pip install pytest-docker-fixtures[pg]`)
+- cockroach(require to be installed with `pip install pytest-docker-fixtures[pg]`)

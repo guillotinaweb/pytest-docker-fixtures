@@ -21,7 +21,8 @@ class Postgresql(BaseImage):
         try:
             import psycopg2
             conn = psycopg2.connect(
-                f"dbname=guillotina user=postgres host={self.host} port={self.get_port()}")
+                f"dbname=guillotina user=postgres host={self.host} "
+                f"port={self.get_port()}")
             cur = conn.cursor()
             cur.execute("SELECT 1;")
             cur.fetchone()

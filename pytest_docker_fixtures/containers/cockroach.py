@@ -3,7 +3,7 @@ from ._base import BaseImage
 
 class CockroachDB(BaseImage):
     name = 'cockroach'
-    image = 'cockroachdb/cockroach:v1.1.3'
+    image = 'cockroachdb/cockroach:v1.1.7'
     port = 26257
 
     def get_image_options(self):

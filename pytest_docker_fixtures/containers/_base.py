@@ -24,12 +24,14 @@ class BaseImage:
         return image_options
 
     def get_port(self):
-        if os.environ.get('TESTING', '') == 'jenkins' or 'TRAVIS' in os.environ:
+        if (os.environ.get('TESTING', '') == 'jenkins' or
+                'TRAVIS' in os.environ):
             return self.port
-        for port in self.container_obj.attrs['NetworkSettings']['Ports'].keys():
+        network = self.container_obj.attrs['NetworkSettings']
+        for port in network['Ports'].keys():
             if port == '6543/tcp':
                 continue
-            return self.container_obj.attrs['NetworkSettings']['Ports'][port][0]['HostPort']
+            return network['Ports'][port][0]['HostPort']
 
     def get_host(self):
         return self.container_obj.attrs['NetworkSettings']['IPAddress']
@@ -69,7 +71,8 @@ class BaseImage:
 
             if self.container_obj.attrs['NetworkSettings']['IPAddress'] != '':
                 if os.environ.get('TESTING', '') == 'jenkins':
-                    self.host = self.container_obj.attrs['NetworkSettings']['IPAddress']
+                    network = self.container_obj.attrs['NetworkSettings']
+                    self.host = network['IPAddress']
                 else:
                     self.host = 'localhost'
 

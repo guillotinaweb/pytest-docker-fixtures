@@ -32,3 +32,4 @@ PRs welcome!
 - etcd
 - pg(require to be installed with `pip install pytest-docker-fixtures[pg]`)
 - cockroach(require to be installed with `pip install pytest-docker-fixtures[pg]`)
+- es

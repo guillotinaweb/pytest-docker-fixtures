@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='pytest-docker-fixtures',
-    version='1.0.2.dev0',
+    version='1.1.0.dev0',
     description='pytest docker fixtures',
     long_description=(open('README.rst').read() + '\n' +
                       open('CHANGELOG.rst').read()),
@@ -27,7 +27,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pytest',
-        'docker'
+        'docker',
+        'requests'
     ],
     extras_require={
         'pg': [

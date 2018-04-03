@@ -24,7 +24,8 @@ class CockroachDB(BaseImage):
         try:
             import psycopg2
             conn = psycopg2.connect(
-                f"dbname=guillotina user=root host={self.host} port={self.get_port()}")
+                f"dbname=guillotina user=root host={self.host} "
+                f"port={self.get_port()}")
             conn.set_session(autocommit=True)
             cur = conn.cursor()
             cur.execute('SHOW DATABASES;')

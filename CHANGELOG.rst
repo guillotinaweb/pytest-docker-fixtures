@@ -1,7 +1,8 @@
-1.0.2 (unreleased)
+1.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Elasticsearch fixture
+  [vangheem]
 
 
 1.0.1 (2018-03-12)

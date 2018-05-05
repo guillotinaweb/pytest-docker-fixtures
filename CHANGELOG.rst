@@ -1,8 +1,8 @@
-1.1.1 (unreleased)
+1.2.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Be able to configure custom docker images
+  [vangheem]
 
 1.1.0 (2018-04-03)
 ------------------

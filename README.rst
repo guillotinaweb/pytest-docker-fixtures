@@ -33,3 +33,14 @@ PRs welcome!
 - pg(require to be installed with `pip install pytest-docker-fixtures[pg]`)
 - cockroach(require to be installed with `pip install pytest-docker-fixtures[pg]`)
 - es
+
+
+Configuring custom images
+-------------------------
+
+You can also configure custom images to use::
+
+    from pytest_docker_fixtures import images
+    images.configure(
+        'elasticsearch',
+        'docker.elastic.co/elasticsearch/elasticsearch-platinum', '6.2.4')

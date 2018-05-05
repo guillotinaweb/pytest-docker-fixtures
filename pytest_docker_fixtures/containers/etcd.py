@@ -8,7 +8,6 @@ image_name = 'test-etcd-{}'.format(random.randint(0, 1000))
 
 class ETCD(BaseImage):
     name = 'etcd'
-    image = 'quay.io/coreos/etcd:v3.2.0-rc.0'
     port = 2379
 
     def get_image_options(self):

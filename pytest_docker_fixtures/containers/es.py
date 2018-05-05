@@ -4,12 +4,8 @@ import os
 import requests
 
 
-ELASTICSEACH_IMAGE = 'elasticsearch:5.2.0'
-
-
 class ElasticSearch(BaseImage):
     name = 'elasticsearch'
-    image = ELASTICSEACH_IMAGE
     port = 9200
 
     def get_image_options(self):
@@ -19,8 +15,9 @@ class ElasticSearch(BaseImage):
             mem_limit='1g',
             environment={
                 'cluster.name': 'docker-cluster',
-                'bootstrap.memory_lock': True,
-                'ES_JAVA_OPTS': '-Xms512m -Xmx512m'
+                'ES_JAVA_OPTS': '-Xms512m -Xmx512m',
+                "xpack.security.enabled": "false",
+                #"http.host=0.0.0.0" -e "transport.host=127.0.0.1"
             }
         ))
         if 'TRAVIS' in os.environ:

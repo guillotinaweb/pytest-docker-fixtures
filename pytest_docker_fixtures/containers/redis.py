@@ -5,7 +5,6 @@ from time import sleep
 class Redis(BaseImage):
     label = 'redis'
     name = 'redis'
-    image = 'redis:3.2.8'
     port = 6379
 
     def get_image_options(self):

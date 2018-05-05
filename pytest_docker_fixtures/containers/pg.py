@@ -3,7 +3,6 @@ from ._base import BaseImage
 
 class Postgresql(BaseImage):
     name = 'postgresql'
-    image = 'postgres:9.6'
     port = 5432
 
     def get_image_options(self):

@@ -1,3 +1,4 @@
+from pytest_docker_fixtures import images
 from time import sleep
 
 import docker
@@ -8,7 +9,6 @@ class BaseImage:
 
     docker_version = '1.23'
     name = 'foobar'
-    image = None
     port = None
     host = ''
     base_image_options = dict(
@@ -18,6 +18,10 @@ class BaseImage:
         privileged=True,
         detach=True,
         publish_all_ports=True)
+
+    @property
+    def image(self):
+        return images.get_image(self.name)
 
     def get_image_options(self):
         image_options = self.base_image_options.copy()

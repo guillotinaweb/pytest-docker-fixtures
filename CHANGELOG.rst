@@ -1,4 +1,4 @@
-1.2.0 (unreleased)
+1.2.0 (2018-05-05)
 ------------------
 
 - Be able to configure custom docker images

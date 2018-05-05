@@ -1,7 +1,8 @@
 1.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Elasticsearch image
+  [vangheem]
 
 
 1.2.0 (2018-05-05)

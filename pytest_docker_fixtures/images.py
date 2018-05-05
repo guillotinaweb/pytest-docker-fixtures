@@ -4,7 +4,7 @@ settings = {
         'version': 'v1.1.7'
     },
     'elasticsearch': {
-        'image': 'elasticsearch:5.2.0',
+        'image': 'elasticsearch',
         'version': '5.2.0'
     },
     'etcd': {

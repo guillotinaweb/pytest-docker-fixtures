@@ -1,4 +1,4 @@
-1.2.1 (unreleased)
+1.2.1 (2018-05-05)
 ------------------
 
 - Fix Elasticsearch image

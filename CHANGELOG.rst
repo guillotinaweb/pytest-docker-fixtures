@@ -1,7 +1,8 @@
 1.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix es when using 6
+  [vangheem]
 
 
 1.2.1 (2018-05-05)

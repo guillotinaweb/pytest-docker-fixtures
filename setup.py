@@ -19,7 +19,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    url='https://github.com/onna/pytest-docker-fixtures',
+    url='https://github.com/guillotinaweb/pytest-docker-fixtures',
     license='BSD',
     zip_safe=True,
     include_package_data=True,

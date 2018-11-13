@@ -3,11 +3,8 @@ from .containers.es import es_image
 from .containers.etcd import etcd_image
 from .containers.pg import pg_image
 from .containers.redis import redis_image
-<<<<<<< HEAD
 from .containers.rabbitmq import rabbitmq_image
-=======
 from .containers.kafka import kafka_image
->>>>>>> add kafka image
 
 import os
 import pytest

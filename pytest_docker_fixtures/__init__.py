@@ -3,9 +3,11 @@ from .containers.es import es_image
 from .containers.etcd import etcd_image
 from .containers.pg import pg_image
 from .containers.redis import redis_image
+from .containers.rabbitmq import rabbitmq_image
 
 import os
 import pytest
+import time
 
 
 IS_TRAVIS = 'TRAVIS' in os.environ
@@ -58,3 +60,9 @@ def etcd():
 def es():
     yield es_image.run()
     es_image.stop()
+
+
+@pytest.fixture(scope='session')
+def rabbitmq():
+    yield rabbitmq_image.run()
+    rabbitmq_image.stop()

@@ -27,15 +27,18 @@ class BaseImage:
         image_options = self.base_image_options.copy()
         return image_options
 
-    def get_port(self):
+    def get_port(self, port=None):
         if (os.environ.get('TESTING', '') == 'jenkins' or
                 'TRAVIS' in os.environ):
-            return self.port
+            return port if port else self.port
         network = self.container_obj.attrs['NetworkSettings']
-        for port in network['Ports'].keys():
-            if port == '6543/tcp':
+        service_port = '{0}/tcp'.format(port if port else self.port)
+        for netport in network['Ports'].keys():
+            if netport == '6543/tcp':
                 continue
-            return network['Ports'][port][0]['HostPort']
+
+            if netport == service_port:
+                return network['Ports'][service_port][0]['HostPort']
 
     def get_host(self):
         return self.container_obj.attrs['NetworkSettings']['IPAddress']

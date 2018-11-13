@@ -18,6 +18,10 @@ settings = {
     'redis': {
         'image': 'redis',
         'version': '3.2.8'
+    },
+    'rabbitmq': {
+        'image': 'rabbitmq',
+        'version': '3.7.8'
     }
 }
 

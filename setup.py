@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='pytest-docker-fixtures',
-    version='1.2.4.dev0',
+    version='1.2.5.dev0',
     description='pytest docker fixtures',
     long_description=(open('README.rst').read() + '\n' +
                       open('CHANGELOG.rst').read()),
@@ -33,6 +33,9 @@ setup(
     extras_require={
         'pg': [
             'psycopg2'
+        ],
+        'rabbitmq': [
+            'pika==0.12.0'
         ]
     }
 )

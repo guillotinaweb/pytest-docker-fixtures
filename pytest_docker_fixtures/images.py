@@ -24,7 +24,7 @@ settings = {
         'version': '3.7.8'
     },
     'kafka': {
-        'image': 'spotify/docker-kafka',
+        'image': 'spotify/kafka',
         'version': 'latest'
     }
 }

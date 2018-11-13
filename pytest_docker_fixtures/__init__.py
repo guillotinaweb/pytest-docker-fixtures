@@ -69,6 +69,7 @@ def rabbitmq():
     rabbitmq_image.stop()
 
 
+@pytest.fixture(scope='session')
 def kafka():
     yield kafka_image.run()
     kafka_image.stop()

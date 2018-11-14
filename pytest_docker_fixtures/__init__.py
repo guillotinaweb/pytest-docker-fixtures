@@ -4,6 +4,7 @@ from .containers.etcd import etcd_image
 from .containers.pg import pg_image
 from .containers.redis import redis_image
 from .containers.rabbitmq import rabbitmq_image
+from .containers.kafka import kafka_image
 
 import os
 import pytest
@@ -66,3 +67,9 @@ def es():
 def rabbitmq():
     yield rabbitmq_image.run()
     rabbitmq_image.stop()
+
+
+@pytest.fixture(scope='session')
+def kafka():
+    yield kafka_image.run()
+    kafka_image.stop()

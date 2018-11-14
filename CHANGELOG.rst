@@ -1,3 +1,9 @@
+1.2.5 (unreleased)
+------------------
+
+- Add support for Kafka
+  [ableeb]
+
 1.2.4 (unreleased)
 ------------------
 

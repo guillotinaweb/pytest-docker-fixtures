@@ -22,6 +22,10 @@ settings = {
     'rabbitmq': {
         'image': 'rabbitmq',
         'version': '3.7.8'
+    },
+    'kafka': {
+        'image': 'spotify/kafka',
+        'version': 'latest'
     }
 }
 

@@ -1,4 +1,4 @@
-1.2.5 (unreleased)
+1.2.5 (2018-11-13)
 ------------------
 
 - Add support for Kafka

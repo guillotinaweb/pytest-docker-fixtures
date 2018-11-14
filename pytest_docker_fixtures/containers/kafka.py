@@ -11,7 +11,8 @@ class Kafka(BaseImage):
         image_options = super().get_image_options()
         image_options.update(dict(
             environment={
-                'ADVERTISED_PORT': '9092'
+                'ADVERTISED_PORT': '9092',
+                'ADVERTISED_HOST': 'localhost'
             },
             ports={
                 f'9092': '9092',

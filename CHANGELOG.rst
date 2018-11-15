@@ -1,4 +1,4 @@
-1.2.6 (unreleased)
+1.2.6 (2018-11-15)
 ------------------
 
 - Fix use of optional dependency

@@ -8,7 +8,6 @@ from .containers.kafka import kafka_image
 
 import os
 import pytest
-import time
 
 
 IS_TRAVIS = 'TRAVIS' in os.environ

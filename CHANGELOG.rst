@@ -1,7 +1,8 @@
 1.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix use of optional dependency
+  [vangheem]
 
 
 1.2.5 (2018-11-13)

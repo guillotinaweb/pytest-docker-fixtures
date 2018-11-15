@@ -1,8 +1,5 @@
 from ._base import BaseImage
 
-import pika
-from pika.connection import URLParameters
-
 
 class RabbitMQ(BaseImage):
     label = 'rabbitmq'
@@ -14,6 +11,8 @@ class RabbitMQ(BaseImage):
         return image_options
 
     def check(self):
+        import pika
+        from pika.connection import URLParameters
         url = f'amqp://guest:guest@{self.host}:{self.get_port()}/%2F'
         try:
             connection = pika.BlockingConnection(URLParameters(url))

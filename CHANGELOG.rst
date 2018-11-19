@@ -1,4 +1,4 @@
-1.2.7 (unreleased)
+1.2.7 (2018-11-19)
 ------------------
 
 - ensure Kafka is available

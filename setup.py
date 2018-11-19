@@ -36,6 +36,9 @@ setup(
         ],
         'rabbitmq': [
             'pika==0.12.0'
+        ],
+        'kafka': [
+            'kafka-python'
         ]
     }
 )

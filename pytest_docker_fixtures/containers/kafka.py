@@ -1,5 +1,4 @@
 from ._base import BaseImage
-from time import sleep
 
 
 class Kafka(BaseImage):
@@ -12,7 +11,7 @@ class Kafka(BaseImage):
         image_options.update(dict(
             environment={
                 'ADVERTISED_PORT': '9092',
-                'ADVERTISED_HOST': 'localhost'
+                'ADVERTISED_HOST': '0.0.0.0'
             },
             ports={
                 f'9092': '9092',
@@ -22,8 +21,14 @@ class Kafka(BaseImage):
         return image_options
 
     def check(self):
-        sleep(1)
-        return True
+        try:
+            from kafka import KafkaClient
+            from kafka.common import KafkaUnavailableError
+            KafkaClient(f"{self.host}:{self.get_port()}")
+            return True
+        except KafkaUnavailableError:
+            pass
+        return False
 
 
 kafka_image = Kafka()

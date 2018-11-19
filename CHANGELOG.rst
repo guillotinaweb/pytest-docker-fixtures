@@ -1,7 +1,8 @@
 1.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- ensure Kafka is available
+  [ableeb]
 
 
 1.2.6 (2018-11-15)

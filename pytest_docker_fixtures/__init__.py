@@ -79,7 +79,7 @@ def kafka():
 def minio():
     if IS_TRAVIS:
         host = 'localhost'
-        port = 6379
+        port = 19000
     else:
         host, port = minio_image.run()
 

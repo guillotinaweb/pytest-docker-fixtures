@@ -1,7 +1,8 @@
 1.2.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Minio
+  [masipcat]
 
 
 1.2.7 (2018-11-19)

@@ -5,6 +5,7 @@ from .containers.pg import pg_image
 from .containers.redis import redis_image
 from .containers.rabbitmq import rabbitmq_image
 from .containers.kafka import kafka_image
+from .containers.minio import minio_image
 
 import os
 import pytest
@@ -18,7 +19,7 @@ def redis():
     """
     detect travis, use travis's postgres; otherwise, use docker
     """
-    if 'TRAVIS' in os.environ:
+    if IS_TRAVIS:
         host = 'localhost'
         port = 6379
     else:
@@ -26,7 +27,7 @@ def redis():
 
     yield host, port  # provide the fixture value
 
-    if 'TRAVIS' not in os.environ:
+    if not IS_TRAVIS:
         redis_image.stop()
 
 
@@ -38,7 +39,7 @@ def cockroach():
 
 @pytest.fixture(scope='session')
 def pg():
-    if 'TRAVIS' in os.environ:
+    if IS_TRAVIS:
         host = 'localhost'
         port = 6379
     else:
@@ -46,7 +47,7 @@ def pg():
 
     yield host, port  # provide the fixture value
 
-    if 'TRAVIS' not in os.environ:
+    if not IS_TRAVIS:
         pg_image.stop()
 
 
@@ -72,3 +73,17 @@ def rabbitmq():
 def kafka():
     yield kafka_image.run()
     kafka_image.stop()
+
+
+@pytest.fixture(scope='session')
+def minio():
+    if IS_TRAVIS:
+        host = 'localhost'
+        port = 19000
+    else:
+        host, port = minio_image.run()
+
+    yield host, port
+
+    if not IS_TRAVIS:
+        minio_image.stop()

@@ -1,4 +1,4 @@
-1.2.8 (unreleased)
+1.2.8 (2019-01-03)
 ------------------
 
 - Add support for Minio

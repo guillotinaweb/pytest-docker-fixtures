@@ -11,6 +11,10 @@ settings = {
         'image': 'quay.io/coreos/etcd',
         'version': 'v3.2.0-rc.0'
     },
+    'minio': {
+        'image': 'minio/minio',
+        'version': 'latest'
+    },
     'postgresql': {
         'image': 'postgres',
         'version': '9.6'

@@ -5,6 +5,7 @@ from .containers.pg import pg_image
 from .containers.redis import redis_image
 from .containers.rabbitmq import rabbitmq_image
 from .containers.kafka import kafka_image
+from .containers.minio import minio_image
 
 import os
 import pytest
@@ -18,57 +19,84 @@ def redis():
     """
     detect travis, use travis's postgres; otherwise, use docker
     """
-    if 'TRAVIS' in os.environ:
-        host = 'localhost'
-        port = 6379
-    else:
-        host, port = redis_image.run()
+    try:
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 6379
+        else:
+            host, port = redis_image.run()
 
-    yield host, port  # provide the fixture value
-
-    if 'TRAVIS' not in os.environ:
-        redis_image.stop()
+        yield host, port  # provide the fixture value
+    finally:
+        if not IS_TRAVIS:
+            redis_image.stop()
 
 
 @pytest.fixture(scope='session')
 def cockroach():
-    yield cockroach_image.run()
-    cockroach_image.stop()
+    try:
+        yield cockroach_image.run()
+    finally:
+        cockroach_image.stop()
 
 
 @pytest.fixture(scope='session')
 def pg():
-    if 'TRAVIS' in os.environ:
-        host = 'localhost'
-        port = 6379
-    else:
-        host, port = pg_image.run()
+    try:
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 6379
+        else:
+            host, port = pg_image.run()
 
-    yield host, port  # provide the fixture value
-
-    if 'TRAVIS' not in os.environ:
-        pg_image.stop()
+        yield host, port  # provide the fixture value
+    finally:
+        if not IS_TRAVIS:
+            pg_image.stop()
 
 
 @pytest.fixture(scope='session')
 def etcd():
-    yield etcd_image.run()
-    etcd_image.stop()
+    try:
+        yield etcd_image.run()
+    finally:
+        etcd_image.stop()
 
 
 @pytest.fixture(scope='session')
 def es():
-    yield es_image.run()
-    es_image.stop()
+    try:
+        yield es_image.run()
+    finally:
+        es_image.stop()
 
 
 @pytest.fixture(scope='session')
 def rabbitmq():
-    yield rabbitmq_image.run()
-    rabbitmq_image.stop()
+    try:
+        yield rabbitmq_image.run()
+    finally:
+        rabbitmq_image.stop()
 
 
 @pytest.fixture(scope='session')
 def kafka():
-    yield kafka_image.run()
-    kafka_image.stop()
+    try:
+        yield kafka_image.run()
+    finally:
+        kafka_image.stop()
+
+
+@pytest.fixture(scope='session')
+def minio():
+    try:
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 6379
+        else:
+            host, port = minio_image.run()
+
+        yield host, port
+    finally:
+        if not IS_TRAVIS:
+            minio_image.stop()

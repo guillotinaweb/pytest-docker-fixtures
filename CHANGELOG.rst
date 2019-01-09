@@ -1,4 +1,4 @@
-1.2.9 (unreleased)
+1.2.9 (2019-01-09)
 ------------------
 
 - Fix Minio returning port = None

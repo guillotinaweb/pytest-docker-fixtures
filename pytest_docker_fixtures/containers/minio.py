@@ -1,9 +1,11 @@
 from ._base import BaseImage
 from time import sleep
+import requests
 
 
 class Minio(BaseImage):
     name = 'minio'
+    port = 9000
 
     @property
     def image(self):
@@ -28,8 +30,14 @@ class Minio(BaseImage):
         return image_options
 
     def check(self):
-        sleep(1)
-        return True
+        url = f'http://{self.host}:{self.get_port()}/'
+        try:
+            resp = requests.options(url)
+            if resp.status_code == 200:
+                return True
+        except:
+            pass
+        return False
 
 
 minio_image = Minio()

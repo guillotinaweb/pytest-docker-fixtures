@@ -1,7 +1,8 @@
 1.2.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Minio returning port = None
+  [masipcat]
 
 
 1.2.8 (2019-01-03)

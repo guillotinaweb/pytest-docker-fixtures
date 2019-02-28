@@ -7,10 +7,6 @@ class Minio(BaseImage):
     name = 'minio'
     port = 9000
 
-    @property
-    def image(self):
-        return 'minio/minio'
-
     def get_image_options(self):
         image_options = super().get_image_options()
 

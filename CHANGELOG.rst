@@ -1,7 +1,10 @@
 1.2.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- minio: configure a custom version of the image doesn't work
+  [masipcat]
+- minio: check() fails because Minio responds with status 403
+  [masipcat]
 
 
 1.2.9 (2019-01-09)

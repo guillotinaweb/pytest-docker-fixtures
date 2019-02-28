@@ -1,4 +1,4 @@
-1.2.10 (unreleased)
+1.2.10 (2019-02-28)
 -------------------
 
 - minio: configure a custom version of the image doesn't work

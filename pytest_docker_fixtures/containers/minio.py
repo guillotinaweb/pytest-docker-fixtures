@@ -29,7 +29,7 @@ class Minio(BaseImage):
         url = f'http://{self.host}:{self.get_port()}/'
         try:
             resp = requests.options(url)
-            if resp.status_code == 200:
+            if 200 <= resp.status_code < 500:
                 return True
         except:
             pass

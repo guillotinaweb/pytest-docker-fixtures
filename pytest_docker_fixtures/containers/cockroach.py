@@ -19,9 +19,9 @@ class CockroachDB(BaseImage):
         return image_options
 
     def check(self):
+        import psycopg2
         conn = cur = None
         try:
-            import psycopg2
             conn = psycopg2.connect(
                 f"dbname=guillotina user=root host={self.host} "
                 f"port={self.get_port()}")

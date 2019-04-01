@@ -14,7 +14,7 @@ class ElasticSearch(BaseImage):
             'cluster.name': 'docker-cluster',
             'ES_JAVA_OPTS': '-Xms512m -Xmx512m',
             "xpack.security.enabled": "false",
-            #"http.host=0.0.0.0" -e "transport.host=127.0.0.1"
+            # "http.host=0.0.0.0" -e "transport.host=127.0.0.1"
         }
         if 'oss' in self.image:
             del env['xpack.security.enabled']
@@ -38,7 +38,7 @@ class ElasticSearch(BaseImage):
             resp = requests.get(url)
             if resp.status_code == 200:
                 return True
-        except:
+        except Exception:
             pass
         return False
 

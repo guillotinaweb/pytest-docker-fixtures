@@ -86,7 +86,7 @@ class BaseImage:
             if self.host != '':
                 opened = self.check()
         if not opened:
-            logs = self.container_obj.logs()
+            logs = self.container_obj.logs().decode('utf-8')
             self.stop()
             raise Exception(f'Could not start {self.name}: {logs}')
         print(f'{self.name} started')

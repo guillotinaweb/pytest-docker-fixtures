@@ -17,8 +17,8 @@ class Postgresql(BaseImage):
         return image_options
 
     def check(self):
+        import psycopg2
         try:
-            import psycopg2
             conn = psycopg2.connect(
                 f"dbname=guillotina user=postgres host={self.host} "
                 f"port={self.get_port()}")

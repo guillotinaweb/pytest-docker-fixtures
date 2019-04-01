@@ -1,7 +1,8 @@
 1.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Make sure ImportError is bubbled
+  [vangheem]
 
 
 1.2.10 (2019-02-28)

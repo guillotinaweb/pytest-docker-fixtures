@@ -21,9 +21,9 @@ class Kafka(BaseImage):
         return image_options
 
     def check(self):
+        from kafka import KafkaClient
+        from kafka.common import KafkaUnavailableError
         try:
-            from kafka import KafkaClient
-            from kafka.common import KafkaUnavailableError
             KafkaClient(f"{self.host}:{self.get_port()}")
             return True
         except KafkaUnavailableError:

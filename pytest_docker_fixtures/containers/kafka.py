@@ -6,20 +6,6 @@ class Kafka(BaseImage):
     name = 'kafka'
     port = 9092
 
-    def get_image_options(self):
-        image_options = super().get_image_options()
-        image_options.update(dict(
-            environment={
-                'ADVERTISED_PORT': '9092',
-                'ADVERTISED_HOST': '0.0.0.0'
-            },
-            ports={
-                f'9092': '9092',
-                f'2181': '2181'
-            }
-        ))
-        return image_options
-
     def check(self):
         from kafka import KafkaClient
         from kafka.common import KafkaUnavailableError

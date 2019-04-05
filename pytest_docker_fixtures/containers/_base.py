@@ -1,3 +1,4 @@
+from pprint import pformat
 from pytest_docker_fixtures import images
 from time import sleep
 
@@ -25,6 +26,15 @@ class BaseImage:
 
     def get_image_options(self):
         image_options = self.base_image_options.copy()
+        if 'environment' not in image_options:
+            image_options['environment'] = {}
+        for key, value in images.get_env(self.name).items():
+            if value is None:
+                if key in image_options['environment']:
+                    del image_options['environment'][key]
+            else:
+                image_options['environment'][key] = value
+        image_options.update(images.get_options(self.name))
         return image_options
 
     def get_port(self, port=None):
@@ -48,11 +58,12 @@ class BaseImage:
 
     def run(self):
         docker_client = docker.from_env(version=self.docker_version)
+        image_options = self.get_image_options()
 
         # Create a new one
         container = docker_client.containers.run(
             image=self.image,
-            **self.get_image_options()
+            **image_options
         )
         ident = container.id
         count = 1
@@ -88,7 +99,10 @@ class BaseImage:
         if not opened:
             logs = self.container_obj.logs().decode('utf-8')
             self.stop()
-            raise Exception(f'Could not start {self.name}: {logs}')
+            raise Exception(
+                f'Could not start {self.name}: {logs}\n'
+                f'Image: {self.image}\n'
+                f'Options:\n{pformat(image_options)}')
         print(f'{self.name} started')
         return self.host, self.get_port()
 

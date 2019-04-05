@@ -25,6 +25,15 @@ class BaseImage:
 
     def get_image_options(self):
         image_options = self.base_image_options.copy()
+        if 'environment' not in image_options:
+            image_options['environment'] = {}
+        for key, value in images.get_env(self.name).items():
+            if value is None:
+                if key in image_options['environment']:
+                    del image_options['environment'][key]
+            else:
+                image_options['environment'][key] = value
+        image_options.update(images.get_options(self.name))
         return image_options
 
     def get_port(self, port=None):

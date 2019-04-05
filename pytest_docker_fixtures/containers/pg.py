@@ -5,17 +5,6 @@ class Postgresql(BaseImage):
     name = 'postgresql'
     port = 5432
 
-    def get_image_options(self):
-        image_options = super().get_image_options()
-        image_options.update(dict(
-            environment={
-                'POSTGRES_PASSWORD': '',
-                'POSTGRES_DB': 'guillotina',
-                'POSTGRES_USER': 'postgres'
-            }
-        ))
-        return image_options
-
     def check(self):
         import psycopg2
         try:

@@ -1,5 +1,8 @@
-1.2.11 (unreleased)
--------------------
+1.3.0 (unreleased)
+------------------
+
+- Be able to configure more of image
+  [vangheem]
 
 - Make sure ImportError is bubbled
   [vangheem]

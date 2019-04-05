@@ -6,10 +6,6 @@ class RabbitMQ(BaseImage):
     name = 'rabbitmq'
     port = 5672
 
-    def get_image_options(self):
-        image_options = super().get_image_options()
-        return image_options
-
     def check(self):
         import pika
         from pika.connection import URLParameters

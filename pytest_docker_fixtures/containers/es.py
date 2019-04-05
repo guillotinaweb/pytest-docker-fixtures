@@ -21,12 +21,20 @@ class ElasticSearch(BaseImage):
 
     def check(self):
         url = f'http://{self.host}:{self.get_port()}/'
+        ssl_url = url.replace('http://', 'https://')
         try:
             resp = requests.get(url)
             if resp.status_code == 200:
                 return True
         except Exception:
-            pass
+            try:
+                # work with ssl
+                resp = requests.get(
+                    ssl_url, auth=('admin', 'admin'), verify=False)
+                if resp.status_code == 200:
+                    return True
+            except Exception:
+                pass
         return False
 
 

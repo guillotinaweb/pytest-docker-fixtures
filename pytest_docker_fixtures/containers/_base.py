@@ -1,3 +1,4 @@
+from pprint import pformat
 from pytest_docker_fixtures import images
 from time import sleep
 
@@ -57,11 +58,12 @@ class BaseImage:
 
     def run(self):
         docker_client = docker.from_env(version=self.docker_version)
+        image_options = self.get_image_options()
 
         # Create a new one
         container = docker_client.containers.run(
             image=self.image,
-            **self.get_image_options()
+            **image_options
         )
         ident = container.id
         count = 1
@@ -97,7 +99,10 @@ class BaseImage:
         if not opened:
             logs = self.container_obj.logs().decode('utf-8')
             self.stop()
-            raise Exception(f'Could not start {self.name}: {logs}')
+            raise Exception(
+                f'Could not start {self.name}: {logs}\n'
+                f'Image: {self.image}\n'
+                f'Options:\n{pformat(image_options)}')
         print(f'{self.name} started')
         return self.host, self.get_port()
 

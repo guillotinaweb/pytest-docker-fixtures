@@ -89,7 +89,8 @@ def get_image(name):
     return image['image'] + ':' + image['version']
 
 
-def configure(name, image=None, version=None, full=None, env=None, options=None):
+def configure(name, image=None, version=None, full=None,
+              env=None, options=None):
     if full is not None:
         image, _, version = full.partition(':')
     if image is not None:

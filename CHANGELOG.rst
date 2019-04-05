@@ -1,4 +1,4 @@
-1.3.0 (unreleased)
+1.3.0 (2019-04-05)
 ------------------
 
 - Be able to configure more of image

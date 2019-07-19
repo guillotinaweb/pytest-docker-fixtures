@@ -1,13 +1,12 @@
 1.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix: custom max_wait_s option should not be passed to docker images [lferran]
 
 1.3.1 (2019-07-19)
 ------------------
 
-- Allow configuring time to wait for image to be setup
+- Allow configuring time to wait for image to be setup [lferran]
 
 
 1.3.0 (2019-04-05)

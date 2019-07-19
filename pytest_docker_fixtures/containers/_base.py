@@ -61,6 +61,8 @@ class BaseImage:
         docker_client = docker.from_env(version=self.docker_version)
         image_options = self.get_image_options()
 
+        max_wait_s = image_options.pop('max_wait_s', None) or 30
+
         # Create a new one
         container = docker_client.containers.run(
             image=self.image,
@@ -74,7 +76,6 @@ class BaseImage:
         opened = False
 
         print(f'starting {self.name}')
-        max_wait_s = image_options.get('max_wait_s') or 30
         while count < max_wait_s and not opened:
             if count > 0:
                 sleep(1)

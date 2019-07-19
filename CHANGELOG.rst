@@ -1,4 +1,4 @@
-1.3.2 (unreleased)
+1.3.2 (2019-07-19)
 ------------------
 
 - Fix: custom max_wait_s option should not be passed to docker images [lferran]

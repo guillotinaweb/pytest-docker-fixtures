@@ -35,6 +35,7 @@ class BaseImage:
             else:
                 image_options['environment'][key] = value
         image_options.update(images.get_options(self.name))
+        image_options['max_wait_s'] = images.get_max_wait_s(self.name)
         return image_options
 
     def get_port(self, port=None):
@@ -73,7 +74,8 @@ class BaseImage:
         opened = False
 
         print(f'starting {self.name}')
-        while count < 30 and not opened:
+        max_wait_s = image_options.get('max_wait_s') or 30
+        while count < max_wait_s and not opened:
             if count > 0:
                 sleep(1)
             count += 1

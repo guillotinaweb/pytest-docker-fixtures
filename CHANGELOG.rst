@@ -1,7 +1,7 @@
 1.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Allow configuring time to wait for image to be setup
 
 
 1.3.0 (2019-04-05)

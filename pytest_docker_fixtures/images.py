@@ -90,7 +90,7 @@ def get_image(name):
 
 
 def configure(name, image=None, version=None, full=None,
-              env=None, options=None):
+              env=None, options=None, max_wait_s=None):
     if full is not None:
         image, _, version = full.partition(':')
     if image is not None:
@@ -101,12 +101,18 @@ def configure(name, image=None, version=None, full=None,
         if 'env' not in settings[name]:
             settings[name]['env'] = {}
         settings[name]['env'].update(env)
+    if max_wait_s:
+        settings[name]['max_wait_s'] = max_wait_s
 
 
 def get_env(name):
     image = settings[name]
     return image.get('env') or {}
 
+def get_max_wait_s(name):
+    # Default to 30 seconds
+    image = settings[name]
+    return image.get('max_wait_s') or 30
 
 def get_options(name):
     image = settings[name]

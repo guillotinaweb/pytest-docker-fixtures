@@ -46,6 +46,13 @@ settings = {
             }
         }
     },
+    'mysql': {
+        'image': 'mysql',
+        'version': '5.7',
+        'env': {
+            'MYSQL_ALLOW_EMPTY_PASSWORD': 'yes'
+        }
+    },
     'postgresql': {
         'image': 'postgres',
         'version': '9.6',

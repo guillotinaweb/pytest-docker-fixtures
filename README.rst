@@ -36,6 +36,7 @@ PRs welcome!
 - cockroach
 - kafka
 - minio
+- mysql(require to be installed with `pip install pytest-docker-fixtures[mysql]`)
 - rabbitmq
 
 

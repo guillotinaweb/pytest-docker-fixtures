@@ -34,6 +34,9 @@ setup(
         'pg': [
             'psycopg2'
         ],
+        'mysql': [
+            'mysql-connector-python~=8.0.17'
+        ],
         'rabbitmq': [
             'pika==0.12.0'
         ],

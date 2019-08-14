@@ -1,7 +1,8 @@
 1.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for MySQL
+  [masipcat]
 
 
 1.3.2 (2019-07-19)

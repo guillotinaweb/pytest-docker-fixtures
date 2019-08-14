@@ -6,6 +6,7 @@ from .containers.redis import redis_image
 from .containers.rabbitmq import rabbitmq_image
 from .containers.kafka import kafka_image
 from .containers.minio import minio_image
+from .containers.mysql import mysql_image
 
 import os
 import pytest
@@ -87,3 +88,9 @@ def minio():
 
     if not IS_TRAVIS:
         minio_image.stop()
+
+
+@pytest.fixture(scope='session')
+def mysql():
+    yield mysql_image.run()
+    mysql_image.stop()

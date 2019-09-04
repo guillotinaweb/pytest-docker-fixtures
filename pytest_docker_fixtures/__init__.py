@@ -20,77 +20,104 @@ def redis():
     """
     detect travis, use travis's postgres; otherwise, use docker
     """
-    if IS_TRAVIS:
-        host = 'localhost'
-        port = 6379
+    if os.environ.get('REDIS'):
+        yield os.environ['REDIS'].split(':')
     else:
-        host, port = redis_image.run()
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 6379
+        else:
+            host, port = redis_image.run()
 
-    yield host, port  # provide the fixture value
+        yield host, port  # provide the fixture value
 
-    if not IS_TRAVIS:
-        redis_image.stop()
+        if not IS_TRAVIS:
+            redis_image.stop()
 
 
 @pytest.fixture(scope='session')
 def cockroach():
-    yield cockroach_image.run()
-    cockroach_image.stop()
+    if os.environ.get('COCKROACH'):
+        yield os.environ['COCKROACH'].split(':')
+    else:
+        yield cockroach_image.run()
+        cockroach_image.stop()
 
 
 @pytest.fixture(scope='session')
 def pg():
-    if IS_TRAVIS:
-        host = 'localhost'
-        port = 6379
+    if os.environ.get('POSTGRESQL'):
+        yield os.environ['POSTGRESQL'].split(':')
     else:
-        host, port = pg_image.run()
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 6379
+        else:
+            host, port = pg_image.run()
 
-    yield host, port  # provide the fixture value
+        yield host, port  # provide the fixture value
 
-    if not IS_TRAVIS:
-        pg_image.stop()
+        if not IS_TRAVIS:
+            pg_image.stop()
 
 
 @pytest.fixture(scope='session')
 def etcd():
-    yield etcd_image.run()
-    etcd_image.stop()
+    if os.environ.get('ETCD'):
+        yield os.environ['ETCD'].split(':')
+    else:
+        yield etcd_image.run()
+        etcd_image.stop()
 
 
 @pytest.fixture(scope='session')
 def es():
-    yield es_image.run()
-    es_image.stop()
+    if os.environ.get('ELASTICSEARCH'):
+        yield os.environ['ELASTICSEARCH'].split(':')
+    else:
+        yield es_image.run()
+        es_image.stop()
 
 
 @pytest.fixture(scope='session')
 def rabbitmq():
-    yield rabbitmq_image.run()
-    rabbitmq_image.stop()
+    if os.environ.get('RABBITMQ'):
+        yield os.environ['RABBITMQ'].split(':')
+    else:
+        yield rabbitmq_image.run()
+        rabbitmq_image.stop()
 
 
 @pytest.fixture(scope='session')
 def kafka():
-    yield kafka_image.run()
-    kafka_image.stop()
+    if os.environ.get('KAFKA'):
+        yield os.environ['KAFKA'].split(':')
+    else:
+        yield kafka_image.run()
+        kafka_image.stop()
 
 
 @pytest.fixture(scope='session')
 def minio():
-    if IS_TRAVIS:
-        host = 'localhost'
-        port = 19000
+    if os.environ.get('MINIO'):
+        yield os.environ['MINIO'].split(':')
     else:
-        host, port = minio_image.run()
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 19000
+        else:
+            host, port = minio_image.run()
 
-    yield host, port
+        yield host, port
 
-    if not IS_TRAVIS:
-        minio_image.stop()
+        if not IS_TRAVIS:
+            minio_image.stop()
 
 
 @pytest.fixture(scope='session')
 def mysql():
-    yield mysql_image.run()
-    mysql_image.stop()
+    if os.environ.get('MYSQL'):
+        yield os.environ['MYSQL'].split(':')
+    else:
+        yield mysql_image.run()
+        mysql_image.stop()

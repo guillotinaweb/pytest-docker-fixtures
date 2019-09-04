@@ -1,4 +1,4 @@
-1.3.4 (unreleased)
+1.3.4 (2019-09-04)
 ------------------
 
 - Be able to override with env variables

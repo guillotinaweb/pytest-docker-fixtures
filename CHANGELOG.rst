@@ -1,7 +1,8 @@
 1.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Be able to override with env variables
+  [vangheem]
 
 
 1.3.3 (2019-08-14)

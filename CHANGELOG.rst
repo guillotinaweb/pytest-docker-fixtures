@@ -1,4 +1,4 @@
-1.4.0 (unreleased)
+1.3.5 (2019-10-01)
 ------------------
 
 - minio: use random port (breaking change!)

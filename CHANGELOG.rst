@@ -1,7 +1,8 @@
 1.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- minio: use random port
+  [masipcat]
 
 
 1.3.4 (2019-09-04)

@@ -40,10 +40,6 @@ settings = {
             'cap_add': ['IPC_LOCK'],
             'mem_limit': '200m',
             'command': 'server /export',
-            'publish_all_ports': False,
-            'ports': {
-                '9000/tcp': '19000'
-            }
         }
     },
     'mysql': {

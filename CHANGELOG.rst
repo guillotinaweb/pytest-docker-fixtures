@@ -1,7 +1,7 @@
-1.3.5 (unreleased)
+1.4.0 (unreleased)
 ------------------
 
-- minio: use random port
+- minio: use random port (breaking change!)
   [masipcat]
 
 

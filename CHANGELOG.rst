@@ -1,4 +1,4 @@
-1.3.6 (unreleased)
+1.3.6 (2020-02-14)
 ------------------
 
 - Update to working postgres image after upstream 9.6 change

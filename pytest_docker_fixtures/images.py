@@ -51,7 +51,7 @@ settings = {
     },
     'postgresql': {
         'image': 'postgres',
-        'version': '9.6',
+        'version': '9.6.16',
         'env': {
             'POSTGRES_PASSWORD': '',
             'POSTGRES_DB': 'guillotina',

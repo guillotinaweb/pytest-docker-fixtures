@@ -1,7 +1,7 @@
 1.3.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update to working postgres image after upstream 9.6 change
 
 
 1.3.5 (2019-10-01)

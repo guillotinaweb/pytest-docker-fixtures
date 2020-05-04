@@ -1,4 +1,4 @@
-1.3.7 (unreleased)
+1.3.7 (2020-05-04)
 ------------------
 
 - Change psycopg2 dependency to psycopg2-binary

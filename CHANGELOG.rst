@@ -1,7 +1,7 @@
 1.3.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change psycopg2 dependency to psycopg2-binary
 
 
 1.3.6 (2020-02-14)

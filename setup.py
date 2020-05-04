@@ -32,7 +32,7 @@ setup(
     ],
     extras_require={
         'pg': [
-            'psycopg2'
+            'psycopg2-binary'
         ],
         'mysql': [
             'mysql-connector-python~=8.0.17'

@@ -8,9 +8,14 @@ class Postgresql(BaseImage):
     def check(self):
         import psycopg2
         try:
-            conn = psycopg2.connect(
-                f"dbname=guillotina user=postgres host={self.host} "
-                f"port={self.get_port()}")
+            env = self.get_image_options()['environment']
+
+            conn_string = f"dbname={env['POSTGRES_DB']} user={env['POSTGRES_USER']} " \
+                f"host={self.host} port={self.get_port()}"
+            if env.get('POSTGRES_PASSWORD'):
+                conn_string += f" password={env['POSTGRES_PASSWORD']}"
+
+            conn = psycopg2.connect(conn_string)
             cur = conn.cursor()
             cur.execute("SELECT 1;")
             cur.fetchone()

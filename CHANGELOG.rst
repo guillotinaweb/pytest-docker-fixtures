@@ -1,4 +1,4 @@
-1.3.8 (unreleased)
+1.3.8 (2020-07-02)
 ------------------
 
 - Stop hardcoding db, user, and password in Postgresql.check()

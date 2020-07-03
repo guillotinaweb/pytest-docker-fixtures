@@ -1,7 +1,8 @@
 1.3.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Stop hardcoding db, user, and password in Postgresql.check()
+  [marshalium]
 
 
 1.3.7 (2020-05-04)

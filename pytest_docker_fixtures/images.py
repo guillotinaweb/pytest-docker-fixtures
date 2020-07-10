@@ -100,6 +100,8 @@ def configure(name, image=None, version=None, full=None,
         settings[name]['image'] = image
     if version is not None:
         settings[name]['version'] = version
+    if options is not None:
+        settings[name]['options'] = options
     if env is not None:
         if 'env' not in settings[name]:
             settings[name]['env'] = {}

@@ -1,7 +1,8 @@
 1.3.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix passing options to image configuration
+  [gitcarbs]
 
 
 1.3.8 (2020-07-02)

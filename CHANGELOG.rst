@@ -1,4 +1,4 @@
-1.3.9 (unreleased)
+1.3.9 (2020-07-10)
 ------------------
 
 - Fix passing options to image configuration

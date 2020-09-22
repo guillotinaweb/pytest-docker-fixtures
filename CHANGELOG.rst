@@ -1,7 +1,7 @@
 1.3.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add memcached docker image [lferran]
 
 
 1.3.9 (2020-07-10)

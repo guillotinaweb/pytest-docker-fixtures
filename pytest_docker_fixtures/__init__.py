@@ -7,6 +7,7 @@ from .containers.rabbitmq import rabbitmq_image
 from .containers.kafka import kafka_image
 from .containers.minio import minio_image
 from .containers.mysql import mysql_image
+from .containers.memcached import memcached_image
 
 import os
 import pytest

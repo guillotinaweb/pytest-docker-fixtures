@@ -66,6 +66,10 @@ settings = {
             'mem_limit': '200m'
         }
     },
+    "memcached": {
+        "image": "memcached",
+        "version": "1.6.7",
+    },
     'rabbitmq': {
         'image': 'rabbitmq',
         'version': '3.7.8'

@@ -122,3 +122,14 @@ def mysql():
     else:
         yield mysql_image.run()
         mysql_image.stop()
+
+
+@pytest.fixture(scope='session')
+def memcached():
+    if os.environ.get('MEMCACHED'):
+        host, port = os.environ['MEMCACHED'].split(':')
+        yield host, port
+    else:
+        host, port = memcached_image.run()
+        yield host, port
+        memcached_image.stop()

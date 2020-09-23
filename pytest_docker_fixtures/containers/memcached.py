@@ -1,5 +1,4 @@
 from ._base import BaseImage
-from time import sleep
 from memcache import Client
 
 

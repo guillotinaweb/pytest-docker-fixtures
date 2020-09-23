@@ -1,5 +1,5 @@
 from ._base import BaseImage
-from memcache import Client
+from pymemcache.client.base import Client
 
 
 class Memcached(BaseImage):
@@ -9,12 +9,11 @@ class Memcached(BaseImage):
 
     def check(self):
         local_port = self.get_port()
-        servers = [f"localhost:{local_port}"]
-        client = Client(servers, debug=1)
-        server_stats = client.get_stats()
+        client = Client(("localhost", local_port))
         try:
-            return server_stats[0][1]["accepting_conns"] == "1"
-        except (IndexError, KeyError):
+            server_stats = client.stats()
+            return server_stats[b"accepting_conns"] == 1
+        except (ConnectionRefusedError, KeyError):
             # not ready yet
             return False
 

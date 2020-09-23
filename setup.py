@@ -42,6 +42,9 @@ setup(
         ],
         'kafka': [
             'kafka-python'
+        ],
+        "memcached": [
+            "python-memcached"
         ]
     }
 )

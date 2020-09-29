@@ -1,5 +1,4 @@
 from ._base import BaseImage
-from pymemcache.client.base import Client
 
 
 class Memcached(BaseImage):
@@ -9,6 +8,8 @@ class Memcached(BaseImage):
 
     def check(self):
         local_port = self.get_port()
+
+        from pymemcache.client.base import Client
         client = Client(("localhost", local_port))
         try:
             server_stats = client.stats()

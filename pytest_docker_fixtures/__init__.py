@@ -7,6 +7,7 @@ from .containers.rabbitmq import rabbitmq_image
 from .containers.kafka import kafka_image
 from .containers.minio import minio_image
 from .containers.mysql import mysql_image
+from .containers.memcached import memcached_image
 
 import os
 import pytest
@@ -121,3 +122,14 @@ def mysql():
     else:
         yield mysql_image.run()
         mysql_image.stop()
+
+
+@pytest.fixture(scope='session')
+def memcached():
+    if os.environ.get('MEMCACHED'):
+        host, port = os.environ['MEMCACHED'].split(':')
+        yield host, port
+    else:
+        host, port = memcached_image.run()
+        yield host, port
+        memcached_image.stop()

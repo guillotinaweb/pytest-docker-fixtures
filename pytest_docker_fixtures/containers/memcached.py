@@ -11,12 +11,14 @@ class Memcached(BaseImage):
 
         from pymemcache.client.base import Client
         client = Client(("localhost", local_port))
+        server_stats = None
         try:
             server_stats = client.stats()
             print("EEEEEEEP")
             print(server_stats)
             return server_stats[b"accepting_conns"] == 1
-        except (ConnectionRefusedError, KeyError):
+        except (ConnectionRefusedError, KeyError) as ex:
+            raise Exception(server_stats) from ex
             # not ready yet
             return False
 

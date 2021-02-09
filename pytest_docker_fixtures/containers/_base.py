@@ -103,7 +103,7 @@ class BaseImage:
             logs = self.container_obj.logs().decode('utf-8')
             self.stop()
             raise Exception(
-                f'Could not start {self.name}: {logs}\n'
+                f'EP! Could not start {self.name}: {logs}\n'
                 f'Image: {self.image}\n'
                 f'Options:\n{pformat(image_options)}')
         print(f'{self.name} started')

@@ -13,6 +13,7 @@ class Memcached(BaseImage):
         client = Client(("localhost", local_port))
         try:
             server_stats = client.stats()
+            print(f'{server_stats}')
             return server_stats[b"accepting_conns"] == 1
         except (ConnectionRefusedError, KeyError):
             # not ready yet

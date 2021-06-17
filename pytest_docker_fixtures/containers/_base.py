@@ -4,6 +4,9 @@ from time import sleep
 
 import docker
 import os
+import re
+
+DOCKER_HOST_TCP_FORMAT = re.compile(r'^tcp://(\d+\.\d+\.\d+\.\d+)(?::\d+)?$')
 
 
 class BaseImage:
@@ -94,6 +97,11 @@ class BaseImage:
                 if os.environ.get('TESTING', '') == 'jenkins':
                     network = self.container_obj.attrs['NetworkSettings']
                     self.host = network['IPAddress']
+                # Support remote docker instance exposed via tcp
+                # https://docs.docker.com/engine/reference/commandline/cli/
+                elif DOCKER_HOST_TCP_FORMAT.match(os.environ.get('DOCKER_HOST', '')):
+                    remote_docker_host_ip = DOCKER_HOST_TCP_FORMAT.match(os.environ.get('DOCKER_HOST', '')).group(1)
+                    self.host = remote_docker_host_ip
                 else:
                     self.host = 'localhost'
 

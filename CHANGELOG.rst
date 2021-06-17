@@ -1,7 +1,7 @@
 1.3.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add support for remote docker daemons [sunbit]
 
 
 1.3.11 (2020-09-30)

@@ -1,4 +1,4 @@
-1.3.12 (unreleased)
+1.3.12 (2021-08-30)
 -------------------
 
 - Add support for remote docker daemons [sunbit]

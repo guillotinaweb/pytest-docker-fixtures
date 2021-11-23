@@ -1,3 +1,5 @@
+import platform
+
 settings = {
     'cockroach': {
         'image': 'cockroachdb/cockroach',
@@ -66,6 +68,14 @@ settings = {
             'mem_limit': '200m'
         }
     },
+    'redis_arm64': {
+        'image': 'arm64v8/redis',
+        'version': '6.2.6',
+        'options': {
+            'cap_add': ['IPC_LOCK'],
+            'mem_limit': '200m'
+        }
+    },
     "memcached": {
         "image": "memcached",
         "version": "1.6.7",
@@ -92,6 +102,8 @@ settings = {
 
 
 def get_image(name):
+    if 'arm64' in platform.platform():
+        name += '_arm64'
     image = settings[name]
     return image['image'] + ':' + image['version']
 
@@ -116,6 +128,7 @@ def configure(name, image=None, version=None, full=None,
 
 def get_env(name):
     image = settings[name]
+        
     return image.get('env') or {}
 
 def get_max_wait_s(name):

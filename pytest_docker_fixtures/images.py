@@ -102,7 +102,7 @@ settings = {
 
 
 def get_image(name):
-    if 'arm64' in platform.platform():
+    if 'arm64' in platform.platform() and f"{name}_arm64" in settings:
         name += '_arm64'
     image = settings[name]
     return image['image'] + ':' + image['version']

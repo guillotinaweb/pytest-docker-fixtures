@@ -10,7 +10,7 @@ class Memcached(BaseImage):
         local_port = self.get_port()
 
         from pymemcache.client.base import Client
-        client = Client(("localhost", local_port))
+        client = Client((self.host, local_port))
         try:
             server_stats = client.stats()
             return server_stats[b"accepting_conns"] == 1

@@ -1,7 +1,7 @@
 1.3.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Support for Apple Silicon images [bloodbare]
 
 
 1.3.12 (2021-08-30)

@@ -1,4 +1,4 @@
-1.3.14 (unreleased)
+1.3.14 (2022-07-06)
 -------------------
 
 - Add stripe/stripemock image [jotare]

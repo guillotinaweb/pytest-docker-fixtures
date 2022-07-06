@@ -45,6 +45,6 @@ setup(
         ],
         "memcached": [
             "pymemcached"
-        ]
+        ],
     }
 )

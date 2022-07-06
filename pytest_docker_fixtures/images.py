@@ -31,6 +31,24 @@ settings = {
         'image': 'quay.io/coreos/etcd',
         'version': 'v3.2.0-rc.0'
     },
+    'kafka': {
+        'image': 'spotify/kafka',
+        'version': 'latest',
+        'env': {
+            'ADVERTISED_PORT': '9092',
+            'ADVERTISED_HOST': '0.0.0.0'
+        },
+        'options': {
+            'ports': {
+                '9092': '9092',
+                '2181': '2181'
+            }
+        }
+    },
+    "memcached": {
+        "image": "memcached",
+        "version": "1.6.7",
+    },
     'minio': {
         'image': 'minio/minio',
         'version': 'latest',
@@ -60,6 +78,10 @@ settings = {
             'POSTGRES_USER': 'postgres'
         }
     },
+    'rabbitmq': {
+        'image': 'rabbitmq',
+        'version': '3.7.8'
+    },
     'redis': {
         'image': 'redis',
         'version': '3.2.8',
@@ -76,28 +98,6 @@ settings = {
             'mem_limit': '200m'
         }
     },
-    "memcached": {
-        "image": "memcached",
-        "version": "1.6.7",
-    },
-    'rabbitmq': {
-        'image': 'rabbitmq',
-        'version': '3.7.8'
-    },
-    'kafka': {
-        'image': 'spotify/kafka',
-        'version': 'latest',
-        'env': {
-            'ADVERTISED_PORT': '9092',
-            'ADVERTISED_HOST': '0.0.0.0'
-        },
-        'options': {
-            'ports': {
-                '9092': '9092',
-                '2181': '2181'
-            }
-        }
-    }
 }
 
 

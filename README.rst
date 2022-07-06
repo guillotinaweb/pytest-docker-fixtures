@@ -28,17 +28,16 @@ Available fixtures
 
 PRs welcome!
 
-- redis
+- cockroach (require to be installed with `pip install pytest-docker-fixtures[pg]`)
+- es (elasticsearch)
 - etcd
-- pg(require to be installed with `pip install pytest-docker-fixtures[pg]`)
-- cockroach(require to be installed with `pip install pytest-docker-fixtures[pg]`)
-- es
-- cockroach
-- kafka
+- kafka (require to be installed with `pip install pytest-docker-fixtures[kafka]`)
+- memcached (require to be installed with `pip install pytest-docker-fixtures[memcached]`)
 - minio
-- mysql(require to be installed with `pip install pytest-docker-fixtures[mysql]`)
-- rabbitmq
-
+- mysql (require to be installed with `pip install pytest-docker-fixtures[mysql]`)
+- pg (require to be installed with `pip install pytest-docker-fixtures[pg]`)
+- rabbitmq (require to be installed with `pip install pytest-docker-fixtures[rabbitmq]`)
+- redis, redis_arm64
 
 Configuring custom images
 -------------------------
@@ -50,4 +49,5 @@ You can also configure custom images to use::
         'elasticsearch',
         'docker.elastic.co/elasticsearch/elasticsearch-platinum', '6.2.4',
         env={},
-        options={})
+        options={}
+    )

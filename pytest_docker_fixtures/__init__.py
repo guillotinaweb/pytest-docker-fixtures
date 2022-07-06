@@ -8,6 +8,7 @@ from .containers.kafka import kafka_image
 from .containers.minio import minio_image
 from .containers.mysql import mysql_image
 from .containers.memcached import memcached_image
+from .containers.stripe import stripe_image
 
 import os
 import pytest
@@ -133,3 +134,14 @@ def memcached():
         host, port = memcached_image.run()
         yield host, port
         memcached_image.stop()
+
+
+@pytest.fixture(scope="session")
+def stripe():
+    if os.environ.get("STRIPE"):
+        host, port = os.environ["STRIPE"].split(":")
+        yield host, port
+    else:
+        host, port = stripe_image.run()
+        yield host, port
+        stripe_image.stop()

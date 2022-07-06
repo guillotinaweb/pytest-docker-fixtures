@@ -38,6 +38,7 @@ PRs welcome!
 - pg (require to be installed with `pip install pytest-docker-fixtures[pg]`)
 - rabbitmq (require to be installed with `pip install pytest-docker-fixtures[rabbitmq]`)
 - redis, redis_arm64
+- stripe (stripemock)
 
 Configuring custom images
 -------------------------

@@ -98,6 +98,16 @@ settings = {
             'mem_limit': '200m'
         }
     },
+    "stripe": {
+        "image": "stripe/stripe-mock",
+        "version": "v0.136.0",
+        "options": {
+            "ports": {
+                "12111": "12111",  # HTTP (default)
+                "12112": "12112",  # HTTPS
+            }
+        }
+    }
 }
 
 

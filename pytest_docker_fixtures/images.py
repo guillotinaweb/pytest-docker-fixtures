@@ -58,8 +58,8 @@ settings = {
         },
         'options': {
             'cap_add': ['IPC_LOCK'],
-            'mem_limit': '200m',
-            'command': 'server /export',
+            'mem_limit': '500m',
+            'command': 'server /data',
         }
     },
     'mysql': {

@@ -84,7 +84,7 @@ settings = {
     },
     'redis': {
         'image': 'redis',
-        'version': '3.2.8',
+        'version': '6.2.6',
         'options': {
             'cap_add': ['IPC_LOCK'],
             'mem_limit': '200m'

@@ -1,7 +1,7 @@
 1.3.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set Redis image version to 6.2.6 for amd64 arch [albertnadal]
 
 
 1.3.14 (2022-07-06)

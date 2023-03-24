@@ -1,4 +1,4 @@
-1.3.16 (unreleased)
+1.3.16 (2023-03-24)
 -------------------
 
 - Use compatibile version of redis with arm support

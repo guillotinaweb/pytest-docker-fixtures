@@ -1,8 +1,8 @@
 1.3.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Use compatibile version of redis with arm support
+  [vangheem]
 
 1.3.15 (2022-11-17)
 -------------------

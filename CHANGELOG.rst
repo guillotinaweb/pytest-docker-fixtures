@@ -1,4 +1,4 @@
-1.3.17 (unreleased)
+1.3.17 (2023-05-02)
 -------------------
 
 - Set docker api version to auto

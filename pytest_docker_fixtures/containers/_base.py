@@ -11,7 +11,7 @@ DOCKER_HOST_TCP_FORMAT = re.compile(r'^tcp://(\d+\.\d+\.\d+\.\d+)(?::\d+)?$')
 
 class BaseImage:
 
-    docker_version = '1.23'
+    docker_version = 'auto'
     name = 'foobar'
     port = None
     host = ''

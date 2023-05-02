@@ -1,7 +1,8 @@
 1.3.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set docker api version to auto
+  [vangheem]
 
 
 1.3.16 (2023-03-24)

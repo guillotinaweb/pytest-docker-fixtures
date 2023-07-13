@@ -1,12 +1,21 @@
+from .base import BaseContainer
+from .base import ContainerConfiguration
+
 import requests
 
-from ._base import BaseImage
 
-
-class Stripe(BaseImage):
-    label = "stripe"
-    name = "stripe"
-    port = 12111                # HTTP port
+class Stripe(BaseContainer):
+    name: str = "stripe"
+    config: ContainerConfiguration = ContainerConfiguration(
+        image="stripe/stripe-mock",
+        version="v0.136.0",
+        options={
+            "ports": {
+                "12111": "12111",  # HTTP (default)
+                "12112": "12112",  # HTTPS
+            }
+        },
+    )
 
     def check(self):
         url = f"http://{self.host}:{self.get_port()}/"
@@ -20,4 +29,4 @@ class Stripe(BaseImage):
         return False
 
 
-stripe_image = Stripe()
+stripe_container = Stripe()

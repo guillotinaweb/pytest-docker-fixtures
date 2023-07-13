@@ -33,6 +33,7 @@ PRs welcome!
 - kafka (require to be installed with `pip install pytest-docker-fixtures[kafka]`)
 - memcached (require to be installed with `pip install pytest-docker-fixtures[memcached]`)
 - minio
+- mosquitto (MQTT)
 - mysql (require to be installed with `pip install pytest-docker-fixtures[mysql]`)
 - pg (require to be installed with `pip install pytest-docker-fixtures[pg]`)
 - rabbitmq (require to be installed with `pip install pytest-docker-fixtures[rabbitmq]`)
@@ -44,10 +45,12 @@ Configuring custom images
 
 You can also configure custom images to use::
 
-    from pytest_docker_fixtures import images
-    images.configure(
-        'elasticsearch',
-        'docker.elastic.co/elasticsearch/elasticsearch-platinum', '6.2.4',
-        env={},
-        options={}
+    Example: Bind mosquitto to fixed port
+
+    from pytest_docker_fixtures.containers.mosquitto import mosquitto_image
+
+    mosquitto_image.config.options.update(
+        {
+            "ports": {"1883/tcp": 1883},
+        }
     )

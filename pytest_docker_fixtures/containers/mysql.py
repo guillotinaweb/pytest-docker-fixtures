@@ -1,9 +1,15 @@
-from ._base import BaseImage
+from .base import BaseImage
+from .base import ContainerConfiguration
 
 
 class MySQL(BaseImage):
-    name = 'mysql'
-    port = 3306
+    name: str = "mysql"
+    config: ContainerConfiguration = ContainerConfiguration(
+        image="mysql",
+        version="5.7",
+        port=3306,
+        env={"MYSQL_ALLOW_EMPTY_PASSWORD": "yes"},
+    )
 
     def check(self):
         import mysql.connector

@@ -1,18 +1,31 @@
-from ._base import BaseImage
+from .base import BaseImage
+from .base import ContainerConfiguration
 
 
 class Postgresql(BaseImage):
-    name = 'postgresql'
-    port = 5432
+    name: str = "postgresql"
+    config: ContainerConfiguration = ContainerConfiguration(
+        image="postgres",
+        version="9.6.16",
+        port=5432,
+        env={
+            "POSTGRES_PASSWORD": "",
+            "POSTGRES_DB": "guillotina",
+            "POSTGRES_USER": "postgres",
+        },
+    )
 
     def check(self):
         import psycopg2
-        try:
-            env = self.get_image_options()['environment']
 
-            conn_string = f"dbname={env['POSTGRES_DB']} user={env['POSTGRES_USER']} " \
+        try:
+            env = self.get_image_options()["environment"]
+
+            conn_string = (
+                f"dbname={env['POSTGRES_DB']} user={env['POSTGRES_USER']} "
                 f"host={self.host} port={self.get_port()}"
-            if env.get('POSTGRES_PASSWORD'):
+            )
+            if env.get("POSTGRES_PASSWORD"):
                 conn_string += f" password={env['POSTGRES_PASSWORD']}"
 
             conn = psycopg2.connect(conn_string)
@@ -22,7 +35,7 @@ class Postgresql(BaseImage):
             cur.close()
             conn.close()
             return True
-        except: # noqa
+        except:  # noqa
             conn = None
             cur = None
         return False

@@ -1,15 +1,19 @@
-from ._base import BaseImage
+from .base import BaseImage
+from .base import ContainerConfiguration
 
 
 class RabbitMQ(BaseImage):
-    label = 'rabbitmq'
-    name = 'rabbitmq'
-    port = 5672
+    name: str = "rabbitmq"
+    config: ContainerConfiguration = ContainerConfiguration(
+        image="rabbitmq", version="3.7.8", port=5672
+    )
 
     def check(self):
-        import pika
         from pika.connection import URLParameters
-        url = f'amqp://guest:guest@{self.host}:{self.get_port()}/%2F'
+
+        import pika
+
+        url = f"amqp://guest:guest@{self.host}:{self.get_port()}/%2F"
         try:
             connection = pika.BlockingConnection(URLParameters(url))
         except Exception:

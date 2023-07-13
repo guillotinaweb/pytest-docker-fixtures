@@ -1,10 +1,10 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 import requests
 
 
-class Stripe(BaseImage):
+class Stripe(BaseContainer):
     name: str = "stripe"
     config: ContainerConfiguration = ContainerConfiguration(
         image="stripe/stripe-mock",
@@ -29,4 +29,4 @@ class Stripe(BaseImage):
         return False
 
 
-stripe_image = Stripe()
+stripe_container = Stripe()

@@ -1,8 +1,8 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 
-class MySQL(BaseImage):
+class MySQL(BaseContainer):
     name: str = "mysql"
     config: ContainerConfiguration = ContainerConfiguration(
         image="mysql",
@@ -41,4 +41,4 @@ class MySQL(BaseImage):
                 conn.close()
 
 
-mysql_image = MySQL()
+mysql_container = MySQL()

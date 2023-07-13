@@ -1,11 +1,11 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 import os
 import requests
 
 
-class ElasticSearch(BaseImage):
+class ElasticSearch(BaseContainer):
     name: str = "elasticsearch"
     config: ContainerConfiguration = ContainerConfiguration(
         image="elasticsearch",
@@ -48,4 +48,4 @@ class ElasticSearch(BaseImage):
         return False
 
 
-es_image = ElasticSearch()
+es_container = ElasticSearch()

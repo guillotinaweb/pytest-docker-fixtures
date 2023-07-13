@@ -40,16 +40,16 @@ PRs welcome!
 - redis
 - stripe (stripemock)
 
-Configuring custom images
+Configuring custom container
 -------------------------
 
-You can also configure custom images to use::
+You can also configure custom container to use::
 
     Example: Bind mosquitto to fixed port
 
-    from pytest_docker_fixtures.containers.mosquitto import mosquitto_image
+    from pytest_docker_fixtures.containers.mosquitto import mosquitto_container
 
-    mosquitto_image.config.options.update(
+    mosquitto_container.config.options.update(
         {
             "ports": {"1883/tcp": 1883},
         }

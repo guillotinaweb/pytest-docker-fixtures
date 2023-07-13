@@ -1,7 +1,8 @@
-from .base import BaseImage, ContainerConfiguration
+from .base import BaseContainer
+from .base import ContainerConfiguration
 
 
-class Mosquitto(BaseImage):
+class Mosquitto(BaseContainer):
     name: str = "mosquitto"
     config: ContainerConfiguration = ContainerConfiguration(
         image="eclipse-mosquitto",
@@ -18,4 +19,4 @@ class Mosquitto(BaseImage):
         return f"mosquitto version {self.config.version} running" in self.logs()
 
 
-mosquitto_image = Mosquitto()
+mosquitto_container = Mosquitto()

@@ -1,8 +1,8 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 
-class CockroachDB(BaseImage):
+class CockroachDB(BaseContainer):
     name: str = "cockroach"
     config: ContainerConfiguration = ContainerConfiguration(
         image="cockroachdb/cockroach",
@@ -46,4 +46,4 @@ class CockroachDB(BaseImage):
         return False
 
 
-cockroach_image = CockroachDB()
+cockroach_container = CockroachDB()

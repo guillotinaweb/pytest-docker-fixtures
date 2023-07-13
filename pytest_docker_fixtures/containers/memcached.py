@@ -1,8 +1,8 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 
-class Memcached(BaseImage):
+class Memcached(BaseContainer):
     name: str = "memcached"
     config: ContainerConfiguration = ContainerConfiguration(
         image="memcached", version="1.6.7", port=11211
@@ -22,4 +22,4 @@ class Memcached(BaseImage):
             return False
 
 
-memcached_image = Memcached()
+memcached_container = Memcached()

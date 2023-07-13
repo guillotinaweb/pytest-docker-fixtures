@@ -1,10 +1,10 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 import requests
 
 
-class Minio(BaseImage):
+class Minio(BaseContainer):
     name: str = "minio"
     config: ContainerConfiguration = ContainerConfiguration(
         image="minio/minio",
@@ -31,4 +31,4 @@ class Minio(BaseImage):
         return False
 
 
-minio_image = Minio()
+minio_container = Minio()

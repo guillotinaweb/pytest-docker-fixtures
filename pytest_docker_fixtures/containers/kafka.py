@@ -1,8 +1,8 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 
-class Kafka(BaseImage):
+class Kafka(BaseContainer):
     name = "kafka"
     config: ContainerConfiguration = ContainerConfiguration(
         image="spotify/kafka",
@@ -23,4 +23,4 @@ class Kafka(BaseImage):
         return False
 
 
-kafka_image = Kafka()
+kafka_container = Kafka()

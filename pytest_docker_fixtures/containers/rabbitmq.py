@@ -1,8 +1,8 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 
-class RabbitMQ(BaseImage):
+class RabbitMQ(BaseContainer):
     name: str = "rabbitmq"
     config: ContainerConfiguration = ContainerConfiguration(
         image="rabbitmq", version="3.7.8", port=5672
@@ -22,4 +22,4 @@ class RabbitMQ(BaseImage):
             return connection.is_open
 
 
-rabbitmq_image = RabbitMQ()
+rabbitmq_container = RabbitMQ()

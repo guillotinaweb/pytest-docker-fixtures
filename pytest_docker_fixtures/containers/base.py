@@ -1,18 +1,23 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from collections import namedtuple
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from dataclasses import field
 from datetime import datetime
+from docker.client import DockerClient
+from docker.errors import APIError
+from docker.errors import NotFound
+from docker.models.containers import Container
 from pprint import pformat
 from time import sleep
-from typing import Any, NamedTuple, Optional, Union
+from typing import Any
+from typing import Optional
+from typing import Union
 
 import docker
 import os
 import re
 
-from docker.models.containers import Container
-from docker.errors import APIError, NotFound
-from docker.client import DockerClient
 
 DOCKER_HOST_TCP_FORMAT = re.compile(r"^tcp://(\d+\.\d+\.\d+\.\d+)(?::\d+)?$")
 
@@ -34,7 +39,7 @@ class ContainerConfiguration:
 HostPort = namedtuple("HostPort", ["host", "port"])
 
 
-class BaseImage(ABC):
+class BaseContainer(ABC):
     docker_version = "auto"
     base_image_options: dict[str, Any] = {
         "cap_add": ["IPC_LOCK"],

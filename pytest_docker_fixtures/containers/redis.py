@@ -1,9 +1,9 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 from time import sleep
 
 
-class Redis(BaseImage):
+class Redis(BaseContainer):
     name: str = "redis"
     config: ContainerConfiguration = ContainerConfiguration(
         image="redis",
@@ -17,4 +17,4 @@ class Redis(BaseImage):
         return True
 
 
-redis_image = Redis()
+redis_container = Redis()

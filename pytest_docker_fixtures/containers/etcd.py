@@ -1,4 +1,4 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 import random
@@ -7,7 +7,7 @@ import random
 image_name = f"test-etcd-{random.randint(0, 1000)}"
 
 
-class ETCD(BaseImage):
+class ETCD(BaseContainer):
     name: str = "etcd"
     config: ContainerConfiguration = ContainerConfiguration(
         image="quay.io/coreos/etcd", version="v3.2.0-rc.0", port=2379
@@ -42,4 +42,4 @@ class ETCD(BaseImage):
         return True
 
 
-etcd_image = ETCD()
+etcd_container = ETCD()

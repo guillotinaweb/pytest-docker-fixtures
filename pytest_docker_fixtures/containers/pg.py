@@ -1,8 +1,8 @@
-from .base import BaseImage
+from .base import BaseContainer
 from .base import ContainerConfiguration
 
 
-class Postgresql(BaseImage):
+class Postgresql(BaseContainer):
     name: str = "postgresql"
     config: ContainerConfiguration = ContainerConfiguration(
         image="postgres",
@@ -41,4 +41,4 @@ class Postgresql(BaseImage):
         return False
 
 
-pg_image = Postgresql()
+pg_container = Postgresql()

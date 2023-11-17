@@ -1,4 +1,10 @@
-1.3.18 (unreleased)
+1.3.19 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
+1.3.18 (2023-11-17)
 -------------------
 
 - Remove container object after stopping it [sunbit]

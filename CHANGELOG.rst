@@ -1,7 +1,7 @@
 1.3.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove container object after stopping it [sunbit]
 
 
 1.3.17 (2023-05-02)

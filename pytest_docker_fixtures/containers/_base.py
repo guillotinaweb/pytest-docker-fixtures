@@ -127,3 +127,4 @@ class BaseImage:
                 self.container_obj.remove(v=True, force=True)
             except docker.errors.APIError:
                 pass
+            self.container_obj = None

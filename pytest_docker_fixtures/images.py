@@ -11,7 +11,7 @@ settings = {
                 ]
             ),
             "publish_all_ports": False,
-            "ports": {f"26257/tcp": "26257"},
+            "ports": {"26257/tcp": "26257"},
         },
     },
     "elasticsearch": {
@@ -78,6 +78,21 @@ settings = {
             }
         },
     },
+    "emqx": {
+        "image": "emqx",
+        "version": "5.5.1"
+    },
+    "influxdb": {
+        "image": "bitnami/influxdb",
+        "version": "2.7.5",  # V2
+        "env": {
+            "INFLUXDB_ADMIN_USER_PASSWORD": "adminadmin",
+            "INFLUXDB_ADMIN_USER_TOKEN": "admin",  # Can be used as basic auth
+            "INFLUXDB_USER_BUCKET": "foo-bucket",
+            "INFLUXDB_DB": "foo-database",
+            "INFLUXDB_ADMIN_ORG": "foo-org"
+        }
+    }
 }
 
 

@@ -9,6 +9,8 @@ from .containers.minio import minio_image
 from .containers.mysql import mysql_image
 from .containers.memcached import memcached_image
 from .containers.stripe import stripe_image
+from .containers.emqx import emqx_image
+from .containers.influxdb import influxdb_image
 
 import os
 import pytest
@@ -145,3 +147,25 @@ def stripe():
         host, port = stripe_image.run()
         yield host, port
         stripe_image.stop()
+
+
+@pytest.fixture(scope="session")
+def emqx():
+    if os.environ.get("EMQX"):
+        host, port = os.environ["EMQX"].split(":")
+        yield host, port
+    else:
+        host, port = emqx_image.run()
+        yield host, port
+        emqx_image.stop()
+
+
+@pytest.fixture(scope="session")
+def influxdb():
+    if os.environ.get("INFLUXDB"):
+        host, port = os.environ["INFLUXDB"].split(":")
+        yield host, port
+    else:
+        host, port = influxdb_image.run()
+        yield host, port
+        influxdb_image.stop()

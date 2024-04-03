@@ -2,7 +2,8 @@
 -------------------
 
 - Remove container object after stopping it [sunbit]
-
+- Adding emqx fixture [nilbacardit26]
+- Adding influxdb fixture [nilbacardit26]
 
 1.3.17 (2023-05-02)
 -------------------

@@ -38,6 +38,8 @@ PRs welcome!
 - rabbitmq (require to be installed with `pip install pytest-docker-fixtures[rabbitmq]`)
 - redis
 - stripe (stripemock)
+- emqx
+- influxdb
 
 Configuring custom images
 -------------------------

@@ -1,15 +1,13 @@
-1.3.19 (unreleased)
+1.3.19 (2024-04-03)
 -------------------
 
-- Nothing changed yet.
+- Adding emqx fixture [nilbacardit26]
+- Adding influxdb fixture [nilbacardit26]
 
-
-1.3.18 (2024-04-03)
+1.3.18 (2023-11-17)
 -------------------
 
 - Remove container object after stopping it [sunbit]
-- Adding emqx fixture [nilbacardit26]
-- Adding influxdb fixture [nilbacardit26]
 
 1.3.17 (2023-05-02)
 -------------------

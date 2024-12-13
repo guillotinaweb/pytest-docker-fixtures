@@ -3,11 +3,11 @@ import platform
 settings = {
     "cockroach": {
         "image": "cockroachdb/cockroach",
-        "version": "v1.1.7",
+        "version": "v24.3.0",
         "options": {
             "command": " ".join(
                 [
-                    "start --insecure",
+                    "start-single-node --insecure",
                 ]
             ),
             "publish_all_ports": False,

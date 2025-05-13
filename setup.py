@@ -44,7 +44,7 @@ setup(
             'kafka-python'
         ],
         "memcached": [
-            "pymemcached"
+            "pymemcache"
         ],
     }
 )

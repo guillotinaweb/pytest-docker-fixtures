@@ -1,4 +1,4 @@
-1.3.20 (unreleased)
+1.3.20 (2025-05-14)
 -------------------
 
 - Fix typo package dependency name: `pymemcached` to `pymemcache`

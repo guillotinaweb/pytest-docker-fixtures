@@ -3,6 +3,7 @@ from .containers.es import es_image
 from .containers.etcd import etcd_image
 from .containers.pg import pg_image
 from .containers.redis import redis_image
+from .containers.valkey import valkey_image
 from .containers.rabbitmq import rabbitmq_image
 from .containers.kafka import kafka_image
 from .containers.minio import minio_image
@@ -20,7 +21,7 @@ IS_TRAVIS = 'TRAVIS' in os.environ
 
 
 @pytest.fixture(scope='session')
-def redis():
+def redisx():
     """
     detect travis, use travis's postgres; otherwise, use docker
     """
@@ -38,6 +39,24 @@ def redis():
         if not IS_TRAVIS:
             redis_image.stop()
 
+@pytest.fixture(scope='session')
+def valkey():
+    """
+    detect travis, use travis's postgres; otherwise, use docker
+    """
+    if os.environ.get('VALKEY'):
+        yield os.environ['VALKEY'].split(':')
+    else:
+        if IS_TRAVIS:
+            host = 'localhost'
+            port = 6379
+        else:
+            host, port = valkey_image.run()
+
+        yield host, port  # provide the fixture value
+
+        if not IS_TRAVIS:
+            valkey_image.stop()
 
 @pytest.fixture(scope='session')
 def cockroach():

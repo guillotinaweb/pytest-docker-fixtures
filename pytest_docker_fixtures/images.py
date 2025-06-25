@@ -68,6 +68,11 @@ settings = {
         "version": "7.0.10",
         "options": {"cap_add": ["IPC_LOCK"], "mem_limit": "200m"},
     },
+    "valkey": {
+        "image": "valkey/valkey",
+        "version": "8.1.2",
+        "options": {"cap_add": ["IPC_LOCK"], "mem_limit": "200m"},
+    },
     "stripe": {
         "image": "stripe/stripe-mock",
         "version": "v0.136.0",

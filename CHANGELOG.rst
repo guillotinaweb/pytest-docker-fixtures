@@ -1,7 +1,7 @@
 1.3.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added Valkey support [sunbit]
 
 
 1.3.20 (2025-05-14)

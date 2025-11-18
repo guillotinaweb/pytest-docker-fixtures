@@ -22,6 +22,7 @@ class BaseImage:
         privileged=True,
         detach=True,
         publish_all_ports=True)
+    default_network = 'bridge'
 
     @property
     def image(self):
@@ -55,7 +56,7 @@ class BaseImage:
                 return network['Ports'][service_port][0]['HostPort']
 
     def get_host(self):
-        return self.container_obj.attrs['NetworkSettings']['IPAddress']
+        return self.container_obj.attrs['NetworkSettings']['Networks'][self.default_network]['IPAddress']
 
     def check(self):
         return True
@@ -93,9 +94,9 @@ class BaseImage:
                 self.stop()
                 raise Exception(f'Container failed to start {logs}')
 
-            if self.container_obj.attrs['NetworkSettings']['IPAddress'] != '':
+            if self.container_obj.attrs['NetworkSettings']['Networks'][self.default_network]['IPAddress'] != '':
                 if os.environ.get('TESTING', '') == 'jenkins':
-                    network = self.container_obj.attrs['NetworkSettings']
+                    network = self.container_obj.attrs['NetworkSettings']['Networks'][self.default_network]
                     self.host = network['IPAddress']
                 # Support remote docker instance exposed via tcp
                 # https://docs.docker.com/engine/reference/commandline/cli/

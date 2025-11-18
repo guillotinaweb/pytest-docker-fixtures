@@ -1,7 +1,13 @@
-1.4.1 (unreleased)
+1.4.2 (unreleased)
 ------------------
 
 - Nothing changed yet.
+
+
+1.4.1 (2025-11-18)
+------------------
+
+- Fix access to deprecated default network in NetworkSettings [jotare]
 
 
 1.4.0 (2025-06-25)

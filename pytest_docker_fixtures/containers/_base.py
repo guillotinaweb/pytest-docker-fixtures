@@ -5,6 +5,7 @@ from time import sleep
 import docker
 import os
 import re
+import socket
 
 DOCKER_HOST_TCP_FORMAT = re.compile(r'^tcp://(\d+\.\d+\.\d+\.\d+)(?::\d+)?$')
 
@@ -106,6 +107,8 @@ class BaseImage:
                 else:
                     self.host = 'localhost'
 
+            self.host = socket.gethostbyname(self.host)
+        
             if self.host != '':
                 opened = self.check()
         if not opened:

@@ -1,4 +1,4 @@
-1.4.2 (unreleased)
+1.4.2 (2025-12-01)
 ------------------
 
 - Fix localhost resulution on macos by forcing resolving hostname to ip. [sunbit]

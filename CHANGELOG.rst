@@ -1,7 +1,19 @@
-1.4.1 (unreleased)
+1.4.3 (unreleased)
 ------------------
 
 - Nothing changed yet.
+
+
+1.4.2 (2025-12-01)
+------------------
+
+- Fix localhost resulution on macos by forcing resolving hostname to ip. [sunbit]
+
+
+1.4.1 (2025-11-18)
+------------------
+
+- Fix access to deprecated default network in NetworkSettings [jotare]
 
 
 1.4.0 (2025-06-25)

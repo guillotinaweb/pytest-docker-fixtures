@@ -1,7 +1,8 @@
 1.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Tolerate missing ``NetworkSettings.IPAddress`` on recent Docker Engine and
+  fall back to ``DOCKER_HOST`` / ``localhost`` when only ports are published. [rboixaderg]
 
 
 1.4.2 (2025-12-01)

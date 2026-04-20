@@ -10,6 +10,49 @@ import socket
 DOCKER_HOST_TCP_FORMAT = re.compile(r'^tcp://(\d+\.\d+\.\d+\.\d+)(?::\d+)?$')
 
 
+def _network_settings(container_attrs):
+    return container_attrs.get('NetworkSettings') or {}
+
+
+def _container_ipv4_from_inspect(container_attrs, default_network='bridge'):
+    """
+    Return the container's IPv4 from docker inspect if present.
+
+    Docker Engine versions differ: some expose NetworkSettings.IPAddress,
+    newer ones only Networks[<net>].IPAddress (and the bridge name may vary).
+    """
+    ns = _network_settings(container_attrs)
+    legacy = (ns.get('IPAddress') or '').strip()
+    if legacy:
+        return legacy
+    networks = ns.get('Networks') or {}
+    if default_network in networks:
+        ip = (networks[default_network].get('IPAddress') or '').strip()
+        if ip:
+            return ip
+    for _name, net in networks.items():
+        ip = (net.get('IPAddress') or '').strip()
+        if ip:
+            return ip
+    return ''
+
+
+def _published_ports(container_attrs):
+    ns = _network_settings(container_attrs)
+    return ns.get('Ports') or {}
+
+
+def _client_host_from_env():
+    """
+    Return the host a client on this machine should use to reach the container.
+
+    Honours ``DOCKER_HOST=tcp://<ip>[:port]`` for remote Docker instances,
+    falling back to ``localhost`` otherwise.
+    """
+    match = DOCKER_HOST_TCP_FORMAT.match(os.environ.get('DOCKER_HOST', ''))
+    return match.group(1) if match else 'localhost'
+
+
 class BaseImage:
 
     docker_version = 'auto'
@@ -47,17 +90,22 @@ class BaseImage:
         if (os.environ.get('TESTING', '') == 'jenkins' or
                 'TRAVIS' in os.environ):
             return port if port else self.port
-        network = self.container_obj.attrs['NetworkSettings']
+        network = _network_settings(self.container_obj.attrs)
+        ports = network.get('Ports') or {}
         service_port = '{0}/tcp'.format(port if port else self.port)
-        for netport in network['Ports'].keys():
+        for netport in ports.keys():
             if netport == '6543/tcp':
                 continue
 
             if netport == service_port:
-                return network['Ports'][service_port][0]['HostPort']
+                return ports[service_port][0]['HostPort']
 
     def get_host(self):
-        return self.container_obj.attrs['NetworkSettings']['Networks'][self.default_network]['IPAddress']
+        if self.host:
+            return self.host
+        attrs = getattr(self.container_obj, 'attrs', {}) or {}
+        return (_container_ipv4_from_inspect(attrs, self.default_network)
+                or 'localhost')
 
     def check(self):
         return True
@@ -95,20 +143,29 @@ class BaseImage:
                 self.stop()
                 raise Exception(f'Container failed to start {logs}')
 
-            if self.container_obj.attrs['NetworkSettings']['Networks'][self.default_network]['IPAddress'] != '':
-                if os.environ.get('TESTING', '') == 'jenkins':
-                    network = self.container_obj.attrs['NetworkSettings']['Networks'][self.default_network]
-                    self.host = network['IPAddress']
-                # Support remote docker instance exposed via tcp
-                # https://docs.docker.com/engine/reference/commandline/cli/
-                elif DOCKER_HOST_TCP_FORMAT.match(os.environ.get('DOCKER_HOST', '')):
-                    remote_docker_host_ip = DOCKER_HOST_TCP_FORMAT.match(os.environ.get('DOCKER_HOST', '')).group(1)
-                    self.host = remote_docker_host_ip
-                else:
-                    self.host = 'localhost'
+            attrs = self.container_obj.attrs
+            container_ip = _container_ipv4_from_inspect(attrs, self.default_network)
+            ports = _published_ports(attrs)
+            has_ports = bool(ports)
 
-            self.host = socket.gethostbyname(self.host)
-        
+            self.host = ''
+            if container_ip:
+                if os.environ.get('TESTING', '') == 'jenkins':
+                    self.host = container_ip
+                else:
+                    self.host = _client_host_from_env()
+            elif has_ports:
+                # No legacy / bridge IP in inspect (common on recent Docker
+                # Desktop / user-defined networks) but ports are published —
+                # service is reachable on the host.
+                self.host = _client_host_from_env()
+
+            if self.host:
+                try:
+                    self.host = socket.gethostbyname(self.host)
+                except socket.gaierror:
+                    pass
+
             if self.host != '':
                 opened = self.check()
         if not opened:

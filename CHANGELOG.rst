@@ -1,7 +1,18 @@
 1.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Harden container network detection for current Docker Engine: tolerate
+  missing ``NetworkSettings.IPAddress`` and empty per-network IPs in the wait
+  loop, ``get_port`` and ``get_host``.
+- When the container has no inspectable IP but publishes ports, fall back to
+  ``DOCKER_HOST`` / ``localhost`` so the wait loop progresses instead of
+  timing out (common on recent Docker Desktop and user-defined networks).
+- ``socket.gethostbyname`` failures during host resolution are no longer
+  fatal; the raw host is kept and the connectivity check will surface any
+  real error.
+- ``get_host()`` now prefers the host selected during ``run()`` (reachable
+  from the client) and only falls back to the container's inspected IP,
+  aligning remote ``DOCKER_HOST`` usage with the rest of the code.
 
 
 1.4.2 (2025-12-01)

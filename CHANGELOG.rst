@@ -1,4 +1,4 @@
-1.4.3 (unreleased)
+1.4.3 (2026-04-20)
 ------------------
 
 - Tolerate missing ``NetworkSettings.IPAddress`` on recent Docker Engine and

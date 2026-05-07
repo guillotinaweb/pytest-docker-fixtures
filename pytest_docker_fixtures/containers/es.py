@@ -23,15 +23,30 @@ class ElasticSearch(BaseImage):
         url = f'http://{self.host}:{self.get_port()}/'
         ssl_url = url.replace('http://', 'https://')
         try:
-            resp = requests.get(url)
-            if resp.status_code == 200:
+            resp = requests.get(
+                f'{url}_cluster/health',
+                params={
+                    'wait_for_status': 'yellow',
+                    'timeout': '1s'
+                },
+                timeout=3)
+            if (resp.status_code == 200 and
+                    resp.json().get('status') in ('yellow', 'green')):
                 return True
         except Exception:
             try:
                 # work with ssl
                 resp = requests.get(
-                    ssl_url, auth=('admin', 'admin'), verify=False)
-                if resp.status_code == 200:
+                    f'{ssl_url}_cluster/health',
+                    auth=('admin', 'admin'),
+                    params={
+                        'wait_for_status': 'yellow',
+                        'timeout': '1s'
+                    },
+                    timeout=3,
+                    verify=False)
+                if (resp.status_code == 200 and
+                        resp.json().get('status') in ('yellow', 'green')):
                     return True
             except Exception:
                 pass

@@ -1,7 +1,10 @@
 1.4.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Wait for Elasticsearch cluster health to reach yellow before yielding the
+  fixture. [nil]
+- Configure Elasticsearch as a single-node test service and disable disk
+  threshold allocation checks by default. [nil]
 
 
 1.4.3 (2026-04-20)

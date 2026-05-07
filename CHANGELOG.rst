@@ -1,4 +1,4 @@
-1.4.4 (unreleased)
+1.4.4 (2026-05-07)
 ------------------
 
 - Wait for Elasticsearch cluster health to reach yellow before yielding the

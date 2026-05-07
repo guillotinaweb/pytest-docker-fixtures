@@ -1,5 +1,6 @@
 import platform
 
+
 settings = {
     "cockroach": {
         "image": "cockroachdb/cockroach",
@@ -20,6 +21,8 @@ settings = {
         "env": {
             "cluster.name": "docker-cluster",
             "ES_JAVA_OPTS": "-Xms512m -Xmx512m",
+            "cluster.routing.allocation.disk.threshold_enabled": "false",
+            "discovery.type": "single-node",
             "xpack.security.enabled": "false",
         },
         "options": {"cap_add": ["IPC_LOCK"], "mem_limit": "1g"},
